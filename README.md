@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/fluxera/Foundation/_apis/build/status/GitHub/fluxera.Fluxera.ValueObject?branchName=main)](https://dev.azure.com/fluxera/Foundation/_build/latest?definitionId=63&branchName=main)
+
 # Fluxera.ValueObject
 A value objects library.
 
