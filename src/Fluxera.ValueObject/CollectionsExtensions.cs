@@ -8,22 +8,22 @@
 	[PublicAPI]
 	public static class CollectionsExtensions
 	{
-		public static ValueList<T> AsValueList<T>(this IEnumerable<T> list)
+		public static IList<T> AsValueList<T>(this IEnumerable<T> list)
 		{
 			return list.ToList().AsValueList();
 		}
 
-		public static ValueList<T> AsValueList<T>(this ICollection<T> list)
+		public static IList<T> AsValueList<T>(this ICollection<T> list)
 		{
 			return list.ToList().AsValueList();
 		}
 
-		public static ValueList<T> AsValueList<T>(this IList<T> list)
+		public static IList<T> AsValueList<T>(this IList<T> list)
 		{
 			return new ValueList<T>(list);
 		}
 
-		public static ValueSet<T> AsValueSet<T>(this ISet<T> set)
+		public static ISet<T> AsValueSet<T>(this ISet<T> set)
 		{
 			return new ValueSet<T>(set);
 		}

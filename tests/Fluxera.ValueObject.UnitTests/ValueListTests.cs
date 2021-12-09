@@ -48,8 +48,16 @@
 		[Test]
 		public void EqualsShouldReturnTrueForListsContainingSameValueObjectsInSameOrder()
 		{
-			IList<Country> listOne = new List<Country> { Country.Create("DE"), Country.Create("US") };
-			IList<Country> listTwo = new List<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> listOne = new List<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
+			IList<Country> listTwo = new List<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
 
 			IList<Country> valueListOne = listOne.AsValueList();
 			IList<Country> valueListTwo = listTwo.AsValueList();
@@ -61,8 +69,16 @@
 		[Test]
 		public void EqualsShouldReturnFalseForListsContainingSameValueObjectsInDifferentOrder()
 		{
-			IList<Country> listOne = new List<Country> { Country.Create("DE"), Country.Create("US") };
-			IList<Country> listTwo = new List<Country> { Country.Create("US"), Country.Create("DE") };
+			IList<Country> listOne = new List<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
+			IList<Country> listTwo = new List<Country>
+			{
+				Country.Create("US"), 
+				Country.Create("DE")
+			};
 
 			IList<Country> valueListOne = listOne.AsValueList();
 			IList<Country> valueListTwo = listTwo.AsValueList();
@@ -106,7 +122,11 @@
 		[Test]
 		public void ShouldProperlyExposeCount()
 		{
-			IList<Country> list = new ValueList<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> list = new ValueList<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
 			list.Count.Should().Be(2);
 
 			list.Add(Country.Create("AT"));
@@ -116,7 +136,11 @@
 		[Test]
 		public void ShouldProperlyExposeContains()
 		{
-			IList<Country> list = new ValueList<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> list = new ValueList<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
 
 			list.Contains(Country.Create("DE")).Should().BeTrue();
 			list.Contains(Country.Create("US")).Should().BeTrue();
@@ -125,7 +149,11 @@
 		[Test]
 		public void ShouldProperlyExposeCopyTo()
 		{
-			IList<Country> list = new ValueList<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> list = new ValueList<Country>
+			{
+				Country.Create("DE"),
+				Country.Create("US")
+			};
 			Country[] array = new Country[5];
 			list.CopyTo(array, 2);
 
@@ -135,7 +163,11 @@
 		[Test]
 		public void ShouldProperlyExposeEnumerable()
 		{
-			IList<Country> list = new ValueList<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> list = new ValueList<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
 
 			foreach(Country country in list)
 			{
@@ -146,7 +178,11 @@
 		[Test]
 		public void ShouldProperlyExposeIndexer()
 		{
-			IList<Country> list = new ValueList<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> list = new ValueList<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
 
 			list[0].Should().Be(Country.Create("DE"));
 			list[1].Should().Be(Country.Create("US"));
@@ -155,7 +191,11 @@
 		[Test]
 		public void ShouldProperlyExposeIndexOf()
 		{
-			IList<Country> list = new ValueList<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> list = new ValueList<Country>
+			{
+				Country.Create("DE"),
+				Country.Create("US")
+			};
 
 			list.IndexOf(Country.Create("DE")).Should().Be(0);
 			list.IndexOf(Country.Create("US")).Should().Be(1);
@@ -164,7 +204,12 @@
 		[Test]
 		public void ShouldProperlyExposeIsReadOnly()
 		{
-			IList<Country> originalList = new List<Country> { Country.Create("DE"), Country.Create("US") };
+			IList<Country> originalList = new List<Country>
+			{
+				Country.Create("DE"), 
+				Country.Create("US")
+			};
+
 			IList<Country> valueList = originalList.AsValueList();
 
 			ICollection<Country> original = originalList;

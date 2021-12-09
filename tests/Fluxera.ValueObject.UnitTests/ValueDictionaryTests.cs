@@ -31,14 +31,14 @@
 		{
 			IDictionary<int, string> dictOne = new Dictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 3, "tres" },
+				{ 1, "one" },
+				{ 3, "three" },
 			};
 			IDictionary<int, string> dictTwo = new Dictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 3, "tres" },
-				{ 4, "quatro" },
+				{ 1, "one" },
+				{ 3, "three" },
+				{ 4, "four" },
 			};
 
 			IDictionary<int, string> valueDictOne = dictOne.AsValueDictionary();
@@ -53,15 +53,15 @@
 		{
 			IDictionary<int, string> dictOne = new Dictionary<int, string>
 			{
-				{ 1, "uno" }, 
-				{ 4, "quatro" }, 
-				{ 3, "tres" }
+				{ 1, "one" }, 
+				{ 4, "four" }, 
+				{ 3, "three" }
 			};
 			IDictionary<int, string> dictTwo = new Dictionary<int, string>
 			{
-				{ 1, "uno" }, 
-				{ 79, "setenta y nueve" }, 
-				{ 4, "quatro" }
+				{ 1, "one" }, 
+				{ 7, "seven" }, 
+				{ 4, "four" }
 			};
 
 			IDictionary<int, string> valueDictOne = dictOne.AsValueDictionary();
@@ -76,15 +76,15 @@
 		{
 			IDictionary<int, string> dictOne = new Dictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 4, "quatro" },
-				{ 3, "tres" }
+				{ 1, "one" },
+				{ 4, "four" },
+				{ 3, "three" }
 			};
 			IDictionary<int, string> dictTwo = new Dictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 3, "tres" },
-				{ 4, "quatro" }
+				{ 1, "one" },
+				{ 3, "three" },
+				{ 4, "four" }
 			};
 
 			IDictionary<int, string> valueDictOne = dictOne.AsValueDictionary();
@@ -99,15 +99,15 @@
 		{
 			IDictionary<int, string> dictOne = new Dictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 4, "quatro" },
-				{ 3, "tres" },
+				{ 1, "one" },
+				{ 4, "four" },
+				{ 3, "three" },
 			};
 			IDictionary<int, string> dictTwo = new Dictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 4, "quatro" },
-				{ 3, "tres" },
+				{ 1, "one" },
+				{ 4, "four" },
+				{ 3, "three" },
 			};
 
 			IDictionary<int, string> valueDictOne = dictOne.AsValueDictionary();
@@ -168,15 +168,15 @@
 		{
 			IDictionary<int, string> valueDict = new ValueDictionary<int, string>
 			{
-				{ 1, "uno" },
-				{ 4, "quatro" },
-				{ 3, "tres" },
+				{ 1, "one" },
+				{ 4, "four" },
+				{ 3, "three" },
 			};
 			ISet<KeyValuePair<int, string>> valueSet = new ValueSet<KeyValuePair<int, string>>
 			{
-				new KeyValuePair<int, string>(1, "uno"), 
-				new KeyValuePair<int, string>(4, "quatro"), 
-				new KeyValuePair<int, string>(3, "tres")
+				new KeyValuePair<int, string>(1, "one"), 
+				new KeyValuePair<int, string>(4, "four"), 
+				new KeyValuePair<int, string>(3, "three")
 			};
 
 			valueDict.Equals(valueSet).Should().BeFalse();

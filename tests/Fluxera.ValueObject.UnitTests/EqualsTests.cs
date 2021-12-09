@@ -2,6 +2,7 @@
 {
 	using System.Collections.Generic;
 	using FluentAssertions;
+	using Microsoft.VisualBasic;
 	using Model;
 	using NUnit.Framework;
 
@@ -14,6 +15,50 @@
 		{
 			bool result = first.Equals(second);
 			result.Should().Be(expected);
+		}
+
+		[Test]
+		public void EqualShouldReturnTrueForCorrectlyImplementedCollections()
+		{
+			Confederation confederation1 = new Confederation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			Confederation confederation2 = new Confederation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			confederation1.Equals(confederation2).Should().BeTrue();
+		}
+
+		[Test]
+		public void EqualShouldReturnTrueForIncorrectlyImplementedCollections()
+		{
+			ConfederationIncorrectImplementation confederation1 = new ConfederationIncorrectImplementation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			ConfederationIncorrectImplementation confederation2 = new ConfederationIncorrectImplementation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			confederation1.Equals(confederation2).Should().BeFalse();
 		}
 
 		private static IEnumerable<object[]> TestData = new List<object[]>
