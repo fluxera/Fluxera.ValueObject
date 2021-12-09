@@ -167,7 +167,7 @@
 		///     Gets all components of the value list that are used for equality.
 		/// </summary>
 		/// <returns>The components to use for equality.</returns>
-		private IEnumerable<object?> GetEqualityComponents()
+		private IEnumerable<object> GetEqualityComponents()
 		{
 			return this.list.Cast<object>();
 		}
