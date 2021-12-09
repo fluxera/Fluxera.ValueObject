@@ -1,10 +1,7 @@
 ﻿namespace Fluxera.ValueObject
 {
 	using System.Collections.Generic;
-	using System.ComponentModel;
 	using System.Linq;
-	using System.Reflection;
-	using System.Runtime.CompilerServices;
 	using System.Text;
 	using JetBrains.Annotations;
 
@@ -13,7 +10,7 @@
 	/// </summary>
 	/// <typeparam name="TValueObject">The type of the value object.</typeparam>
 	[PublicAPI]
-	public abstract class ValueObject<TValueObject> : INotifyPropertyChanging, INotifyPropertyChanged
+	public abstract class ValueObject<TValueObject>
 		where TValueObject : ValueObject<TValueObject>
 	{
 		/// <summary>
@@ -24,12 +21,6 @@
 		///		See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
 		/// </remarks>
 		private const int HashMultiplier = 37;
-
-		/// <inheritdoc />
-		public event PropertyChangingEventHandler? PropertyChanging;
-
-		/// <inheritdoc />
-		public event PropertyChangedEventHandler? PropertyChanged;
 
 		public static bool operator ==(ValueObject<TValueObject>? left, ValueObject<TValueObject>? right)
 		{
@@ -62,12 +53,7 @@
 			ValueObject<TValueObject>? other = obj as ValueObject<TValueObject>;
 			return other != null 
 				&& this.GetType() == other.GetType()
-				&& this.HasSameObjectSignatureAs(other);
-		}
-
-		private bool HasSameObjectSignatureAs(ValueObject<TValueObject> other)
-		{
-			return this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+				&& this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
 		}
 
 		/// <inheritdoc />
@@ -80,7 +66,7 @@
 				// so we include the value object type in the hash calculation
 				int hashCode = this.GetType().GetHashCode();
 
-				foreach(object component in this.GetEqualityComponents())
+				foreach(object? component in this.GetEqualityComponents())
 				{
 					if(component != null)
 					{
@@ -95,7 +81,7 @@
 		/// <inheritdoc />
 		public override string ToString()
 		{
-			using(IEnumerator<object> enumerator = this.GetEqualityComponents().GetEnumerator())
+			using(IEnumerator<object?> enumerator = this.GetEqualityComponents().GetEnumerator())
 			{
 				if(!enumerator.MoveNext())
 				{
@@ -120,42 +106,14 @@
 		///		can at any time override this behavior with a manual or custom implementation.
 		/// </summary>
 		/// <returns>The components to use for equality.</returns>
-		protected virtual IEnumerable<object> GetEqualityComponents()
+		protected virtual IEnumerable<object?> GetEqualityComponents()
 		{
-			PropertyInfo[] equalityComponentsProperties = this.GetEqualityComponentsProperties();
-
-			foreach(PropertyInfo property in equalityComponentsProperties)
+			PropertyAccessor[] propertyAccessors = PropertyAccessor.GetPropertyAccessors(this.GetType());
+			foreach(PropertyAccessor accessor in propertyAccessors)
 			{
-				object value = property.GetValue(this, null);
+				object? value = accessor.Invoke(this);
 				yield return value;
 			}
-		}
-
-		protected virtual void OnPropertyChanging(string propertyName)
-		{
-			this.PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
-		}
-
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-			this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
-		protected void SetAndNotify(ref object field, object value, [CallerMemberName] string propertyName = null!)
-		{
-			if(field != value)
-			{
-				this.OnPropertyChanging(propertyName);
-				field = value;
-			}
-
-			this.OnPropertyChanged(propertyName);
-		}
-
-		private PropertyInfo[] GetEqualityComponentsProperties()
-		{
-			// TODO: Cache the metadata.
-			return this.GetType().GetProperties();
 		}
 	}
 }
