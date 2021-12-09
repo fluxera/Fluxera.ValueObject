@@ -18,5 +18,15 @@
 
 			return input;
 		}
+
+		public static string InvalidLength(this IGuard guard, string input, [InvokerParameterName] string parameterName, int allowedLength)
+		{
+			if(input.Length != allowedLength)
+			{
+				throw CreateArgumentException(parameterName, $"Value cannot be other than {allowedLength} characters in length.");
+			}
+
+			return input;
+		}
 	}
 }

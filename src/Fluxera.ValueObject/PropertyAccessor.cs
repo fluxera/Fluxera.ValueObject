@@ -8,7 +8,7 @@
 	using JetBrains.Annotations;
 
 	[PublicAPI]
-	public sealed class PropertyAccessor
+	internal sealed class PropertyAccessor
 	{
 		private static readonly ConcurrentDictionary<Type, PropertyAccessor[]> propertyAccessorsMap = new ConcurrentDictionary<Type, PropertyAccessor[]>();
 

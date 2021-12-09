@@ -88,7 +88,7 @@
 					return $"{typeof(TValueObject).Name} {{}}";
 				}
 
-				StringBuilder builder = new StringBuilder($"{typeof(TValueObject).Name} {{");
+				StringBuilder builder = new StringBuilder($"{typeof(TValueObject).Name} {{ ");
 				builder.Append(enumerator.Current);
 				while(enumerator.MoveNext())
 				{

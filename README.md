@@ -30,6 +30,8 @@ public Amount Add(Amount amount)
 
 ## Usage
 
+### Value Object
+
 By having your **Value Object** derive from the ```ValueObject<TValueObject>``` base class it properly
 implements **Equality** (```Equals()```) and **Uniqueness** (```GetHashCode()```). Automatically
 **all** public properties are used for the calculations **without** you having
@@ -76,3 +78,5 @@ protected override IEnumerable<object> GetEqualityComponents()
     yield return this.Currency;
 }
 ```
+
+### Collections
