@@ -2,16 +2,23 @@
 {
 	using System;
 	using FluentAssertions;
-	using Model;
+	using Fluxera.ValueObject.UnitTests.Model;
 	using NUnit.Framework;
 
 	[TestFixture]
 	public class ValueObjectExtensionsTests
 	{
 		[Test]
-		public void ShouldReturnTrueForValueObjectType()
+		public void ShouldReturnFalseForObjectType()
 		{
-			Type type = typeof(Country);
+			Type type = typeof(object);
+			type.IsValueObject().Should().BeFalse();
+		}
+
+		[Test]
+		public void ShouldReturnTrueForPrimitiveValueObjectType()
+		{
+			Type type = typeof(PostCode);
 			type.IsValueObject().Should().BeTrue();
 		}
 
@@ -23,10 +30,10 @@
 		}
 
 		[Test]
-		public void ShouldReturnFalseForObjectType()
+		public void ShouldReturnTrueForValueObjectType()
 		{
-			Type type = typeof(object);
-			type.IsValueObject().Should().BeFalse();
+			Type type = typeof(Country);
+			type.IsValueObject().Should().BeTrue();
 		}
 	}
 }

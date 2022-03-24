@@ -6,7 +6,7 @@
 	using JetBrains.Annotations;
 
 	/// <summary>
-	///		A base class for any value object.
+	///     A base class for any value object.
 	/// </summary>
 	/// <typeparam name="TValueObject">The type of the value object.</typeparam>
 	[PublicAPI]
@@ -14,17 +14,20 @@
 		where TValueObject : ValueObject<TValueObject>
 	{
 		/// <summary>
-		///		To ensure hashcode uniqueness, a carefully selected random number multiplier
-		///     is used within the calculation. 
+		///     To ensure hashcode uniqueness, a carefully selected random number multiplier
+		///     is used within the calculation.
 		/// </summary>
 		/// <remarks>
-		///		See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
+		///     See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
 		/// </remarks>
 		private const int HashMultiplier = 37;
 
+		/// <summary>
+		///     Checks if the given value objects are equal.
+		/// </summary>
 		public static bool operator ==(ValueObject<TValueObject>? left, ValueObject<TValueObject>? right)
 		{
-			if (left is null)
+			if(left is null)
 			{
 				return right is null;
 			}
@@ -32,32 +35,35 @@
 			return left.Equals(right);
 		}
 
+		/// <summary>
+		///     Checks if the given value objects are not equal.
+		/// </summary>
 		public static bool operator !=(ValueObject<TValueObject>? left, ValueObject<TValueObject>? right)
 		{
 			return !(left == right);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object? obj)
+		public sealed override bool Equals(object? obj)
 		{
 			if(obj is null)
 			{
 				return false;
 			}
 
-			if (object.ReferenceEquals(this, obj))
+			if(object.ReferenceEquals(this, obj))
 			{
 				return true;
 			}
 
 			ValueObject<TValueObject>? other = obj as ValueObject<TValueObject>;
-			return other != null 
-				&& this.GetType() == other.GetType()
+			return (other != null)
+				&& (this.GetType() == other.GetType())
 				&& this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
 		}
 
 		/// <inheritdoc />
-		public override int GetHashCode()
+		public sealed override int GetHashCode()
 		{
 			unchecked
 			{
@@ -79,7 +85,7 @@
 		}
 
 		/// <inheritdoc />
-		public override string ToString()
+		public sealed override string ToString()
 		{
 			using(IEnumerator<object?> enumerator = this.GetEqualityComponents().GetEnumerator())
 			{
@@ -94,6 +100,7 @@
 				{
 					builder.Append(" ,").Append(enumerator.Current);
 				}
+
 				builder.Append(" }");
 
 				return builder.ToString();
@@ -101,9 +108,9 @@
 		}
 
 		/// <summary>
-		///		Gets all components of the value object that are used for equality. <br/>
-		///		The default implementation get all properties via reflection. One
-		///		can at any time override this behavior with a manual or custom implementation.
+		///     Gets all components of the value object that are used for equality. <br />
+		///     The default implementation get all properties via reflection. One
+		///     can at any time override this behavior with a manual or custom implementation.
 		/// </summary>
 		/// <returns>The components to use for equality.</returns>
 		protected virtual IEnumerable<object?> GetEqualityComponents()

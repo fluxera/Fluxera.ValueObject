@@ -3,21 +3,27 @@
 	using System;
 	using System.Collections.Generic;
 	using FluentAssertions;
-	using Model;
+	using Fluxera.ValueObject.UnitTests.Model;
 	using NUnit.Framework;
 
 	[TestFixture]
 	public class GetHashCodeTests
 	{
-		[Test]		
-		[TestCaseSource(nameof(TestData))]
-		public void GetHashCodeShouldReturnExpectedValue(object first, object second, bool expected)
+		private static IEnumerable<object[]> PrimitiveTestData = new List<object[]>
 		{
-			Console.WriteLine($"{first.GetHashCode()} : {second.GetHashCode()}");
-
-			bool result = first.GetHashCode() == second.GetHashCode();
-			result.Should().Be(expected);
-		}
+			new object[]
+			{
+				new PostCode("12345"),
+				new PostCode("12345"),
+				true
+			},
+			new object[]
+			{
+				new PostCode("12345"),
+				new PostCode("54321"),
+				false
+			}
+		};
 
 		private static IEnumerable<object[]> TestData = new List<object[]>
 		{
@@ -77,5 +83,16 @@
 				false
 			},
 		};
+
+		[Test]
+		[TestCaseSource(nameof(TestData))]
+		[TestCaseSource(nameof(PrimitiveTestData))]
+		public void GetHashCodeShouldReturnExpectedValue(object first, object second, bool expected)
+		{
+			Console.WriteLine($"{first.GetHashCode()} : {second.GetHashCode()}");
+
+			bool result = first.GetHashCode() == second.GetHashCode();
+			result.Should().Be(expected);
+		}
 	}
 }

@@ -2,65 +2,12 @@
 {
 	using System.Collections.Generic;
 	using FluentAssertions;
-	using Microsoft.VisualBasic;
-	using Model;
+	using Fluxera.ValueObject.UnitTests.Model;
 	using NUnit.Framework;
 
 	[TestFixture]
 	public class EqualsTests
 	{
-		[Test]		
-		[TestCaseSource(nameof(TestData))]
-		public void EqualShouldReturnExpectedValue(object first, object second, bool expected)
-		{
-			bool result = first.Equals(second);
-			result.Should().Be(expected);
-		}
-
-		[Test]
-		public void EqualShouldReturnTrueForCorrectlyImplementedCollections()
-		{
-			Confederation confederation1 = new Confederation("European Union", new List<Country>
-			{
-				Country.Create("FR"),
-				Country.Create("DE"),
-				Country.Create("AT"),
-				// ...
-			});
-
-			Confederation confederation2 = new Confederation("European Union", new List<Country>
-			{
-				Country.Create("FR"),
-				Country.Create("DE"),
-				Country.Create("AT"),
-				// ...
-			});
-
-			confederation1.Equals(confederation2).Should().BeTrue();
-		}
-
-		[Test]
-		public void EqualShouldReturnTrueForIncorrectlyImplementedCollections()
-		{
-			ConfederationIncorrectImplementation confederation1 = new ConfederationIncorrectImplementation("European Union", new List<Country>
-			{
-				Country.Create("FR"),
-				Country.Create("DE"),
-				Country.Create("AT"),
-				// ...
-			});
-
-			ConfederationIncorrectImplementation confederation2 = new ConfederationIncorrectImplementation("European Union", new List<Country>
-			{
-				Country.Create("FR"),
-				Country.Create("DE"),
-				Country.Create("AT"),
-				// ...
-			});
-
-			confederation1.Equals(confederation2).Should().BeFalse();
-		}
-
 		private static IEnumerable<object[]> TestData = new List<object[]>
 		{
 			new object[]
@@ -126,5 +73,74 @@
 				false
 			},
 		};
+
+		private static IEnumerable<object[]> PrimitiveTestData = new List<object[]>
+		{
+			new object[]
+			{
+				new PostCode("12345"),
+				new PostCode("12345"),
+				true
+			},
+			new object[]
+			{
+				new PostCode("12345"),
+				new PostCode("54321"),
+				false
+			}
+		};
+
+		[Test]
+		[TestCaseSource(nameof(TestData))]
+		[TestCaseSource(nameof(PrimitiveTestData))]
+		public void EqualShouldReturnExpectedValue(object first, object second, bool expected)
+		{
+			bool result = first.Equals(second);
+			result.Should().Be(expected);
+		}
+
+		[Test]
+		public void EqualShouldReturnTrueForCorrectlyImplementedCollections()
+		{
+			Confederation confederation1 = new Confederation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			Confederation confederation2 = new Confederation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			confederation1.Equals(confederation2).Should().BeTrue();
+		}
+
+		[Test]
+		public void EqualShouldReturnTrueForIncorrectlyImplementedCollections()
+		{
+			ConfederationIncorrectImplementation confederation1 = new ConfederationIncorrectImplementation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			ConfederationIncorrectImplementation confederation2 = new ConfederationIncorrectImplementation("European Union", new List<Country>
+			{
+				Country.Create("FR"),
+				Country.Create("DE"),
+				Country.Create("AT"),
+				// ...
+			});
+
+			confederation1.Equals(confederation2).Should().BeFalse();
+		}
 	}
 }
