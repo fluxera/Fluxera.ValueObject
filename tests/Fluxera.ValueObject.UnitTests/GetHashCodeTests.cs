@@ -19,8 +19,50 @@
 			},
 			new object[]
 			{
-				new PostCode("12345"),
-				new PostCode("54321"),
+				new PostCode("12345")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "ABC"
+				},
+				new PostCode("12345")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "ABC"
+				},
+				true
+			},
+			new object[]
+			{
+				new PostCode("12345")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "ABC"
+				},
+				new PostCode("12345")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "XYZ"
+				},
+				true
+			},
+			new object[]
+			{
+				new PostCode("12345")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "ABC"
+				},
+				new PostCode("54321")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "ABC"
+				},
+				false
+			},
+			new object[]
+			{
+				new PostCode("12345")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "ABC"
+				},
+				new PostCode("54321")
+				{
+					WillNotBeConsideredForEqualityAndHashCode = "XYZ"
+				},
 				false
 			}
 		};

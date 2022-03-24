@@ -9,5 +9,7 @@
 		{
 			this.Value = value;
 		}
+
+		public string WillNotBeConsideredForEqualityAndHashCode { get; set; }
 	}
 }
