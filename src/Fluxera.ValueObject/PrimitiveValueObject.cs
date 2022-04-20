@@ -24,7 +24,7 @@
 		static PrimitiveValueObject()
 		{
 			Type valueType = typeof(TValue);
-			bool isPrimitive = valueType.IsPrimitive(true, true);
+			bool isPrimitive = valueType.IsPrimitive(true);
 
 			Guard.Against.False(isPrimitive, nameof(Value), "The value of a primitive value object must be a primitive, string or enum value.");
 		}
