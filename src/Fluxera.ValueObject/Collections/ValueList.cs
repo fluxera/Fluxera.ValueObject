@@ -25,10 +25,17 @@
 
 		private readonly IList<T> list;
 
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ValueList{T}" /> type.
+		/// </summary>
 		public ValueList() : this(new List<T>())
 		{
 		}
 
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ValueList{T}" /> type.
+		/// </summary>
+		/// <param name="list"></param>
 		public ValueList(IList<T> list)
 		{
 			this.list = list;
@@ -107,7 +114,13 @@
 			set => this.list[index] = value;
 		}
 
-		public static bool operator ==(ValueList<T>? left, ValueList<T>? right)
+		/// <summary>
+		///     Checks two value list instances for equality.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator ==(ValueList<T> left, ValueList<T> right)
 		{
 			if(left is null)
 			{
@@ -117,13 +130,19 @@
 			return left.Equals(right);
 		}
 
-		public static bool operator !=(ValueList<T>? left, ValueList<T>? right)
+		/// <summary>
+		///     Checks two value list instances for non-quality.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator !=(ValueList<T> left, ValueList<T> right)
 		{
 			return !(left == right);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object? obj)
+		public override bool Equals(object obj)
 		{
 			if(obj is null)
 			{
@@ -135,9 +154,9 @@
 				return true;
 			}
 
-			ValueList<T>? other = obj as ValueList<T>;
-			return (other != null)
-				&& (this.GetType() == other.GetType())
+			ValueList<T> other = obj as ValueList<T>;
+			return other != null
+				&& this.GetType() == other.GetType()
 				&& this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
 		}
 
@@ -151,11 +170,11 @@
 				// so we include the value object type in the hash calculation
 				int hashCode = this.GetType().GetHashCode();
 
-				foreach(object? component in this.GetEqualityComponents())
+				foreach(object component in this.GetEqualityComponents())
 				{
 					if(component != null)
 					{
-						hashCode = (hashCode * HashMultiplier) ^ component.GetHashCode();
+						hashCode = hashCode * HashMultiplier ^ component.GetHashCode();
 					}
 				}
 

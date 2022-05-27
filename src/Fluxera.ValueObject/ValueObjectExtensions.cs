@@ -3,11 +3,14 @@
 	using System;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     Extensions methods for the <see cref="ValueObject{TValueObject}" /> type.
+	/// </summary>
 	[PublicAPI]
 	public static class ValueObjectExtensions
 	{
 		/// <summary>
-		///		Checks if the given type is a <see cref="ValueObject{TValueObject}" />.
+		///     Checks if the given type is a <see cref="ValueObject{TValueObject}" />.
 		/// </summary>
 		/// <param name="type">The type to check.</param>
 		/// <returns><c>true</c> if the type is a value object; <c>false</c> otherwise.</returns>
@@ -26,10 +29,10 @@
 
 		private static bool IsSubclassOfRawGeneric(this Type toCheck, Type generic)
 		{
-			while (toCheck != null && toCheck != typeof(object))
+			while(toCheck != null && toCheck != typeof(object))
 			{
 				Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-				if (generic == cur)
+				if(generic == cur)
 				{
 					return true;
 				}

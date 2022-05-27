@@ -25,10 +25,17 @@
 
 		private readonly IDictionary<TKey, TValue> dictionary;
 
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ValueDictionary{TKey, TValue}" /> type.
+		/// </summary>
 		public ValueDictionary() : this(new Dictionary<TKey, TValue>())
 		{
 		}
 
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ValueDictionary{TKey, TValue}" /> type.
+		/// </summary>
+		/// <param name="dictionary"></param>
 		public ValueDictionary(IDictionary<TKey, TValue> dictionary)
 		{
 			this.dictionary = dictionary;
@@ -119,7 +126,13 @@
 		/// <inheritdoc />
 		public ICollection<TValue> Values => this.dictionary.Values;
 
-		public static bool operator ==(ValueDictionary<TKey, TValue>? left, ValueDictionary<TKey, TValue>? right)
+		/// <summary>
+		///     Checks two value dictionary instances for equality.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator ==(ValueDictionary<TKey, TValue> left, ValueDictionary<TKey, TValue> right)
 		{
 			if(left is null)
 			{
@@ -129,13 +142,19 @@
 			return left.Equals(right);
 		}
 
-		public static bool operator !=(ValueDictionary<TKey, TValue>? left, ValueDictionary<TKey, TValue>? right)
+		/// <summary>
+		///     Checks two value dictionary instances for non-equality.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator !=(ValueDictionary<TKey, TValue> left, ValueDictionary<TKey, TValue> right)
 		{
 			return !(left == right);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object? obj)
+		public override bool Equals(object obj)
 		{
 			if(obj is null)
 			{
@@ -165,7 +184,7 @@
 				shorterDict = this.dictionary;
 			}
 
-			return (this.GetType() == other.GetType())
+			return this.GetType() == other.GetType()
 				&& !longerDict.Except(shorterDict).Any();
 		}
 
@@ -184,7 +203,7 @@
 				// elements, so wo have always the same order.
 				ISet<int> sortedHashCodes = new SortedSet<int>();
 
-				foreach(object? component in this.GetEqualityComponents())
+				foreach(object component in this.GetEqualityComponents())
 				{
 					if(component != null)
 					{
@@ -195,7 +214,7 @@
 
 				foreach(int componentHashCode in sortedHashCodes)
 				{
-					hashCode = (hashCode * HashMultiplier) ^ componentHashCode;
+					hashCode = hashCode * HashMultiplier ^ componentHashCode;
 				}
 
 				return hashCode;
