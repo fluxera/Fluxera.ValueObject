@@ -5,9 +5,8 @@
 	[PublicAPI]
 	public class PostCode : PrimitiveValueObject<PostCode, string>
 	{
-		public PostCode(string value)
+		public PostCode(string value) : base(value)
 		{
-			this.Value = value;
 		}
 
 		public string WillNotBeConsideredForEqualityAndHashCode { get; set; }

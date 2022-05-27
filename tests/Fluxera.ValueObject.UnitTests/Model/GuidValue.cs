@@ -6,5 +6,9 @@
 	[PublicAPI]
 	public class GuidValue : PrimitiveValueObject<GuidValue, Guid>
 	{
+		/// <inheritdoc />
+		public GuidValue(Guid value) : base(value)
+		{
+		}
 	}
 }
