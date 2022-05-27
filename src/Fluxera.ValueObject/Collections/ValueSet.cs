@@ -25,10 +25,17 @@
 
 		private readonly ISet<T> hashSet;
 
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ValueSet{T}" /> type.
+		/// </summary>
 		public ValueSet() : this(new HashSet<T>())
 		{
 		}
 
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ValueSet{T}" /> type.
+		/// </summary>
+		/// <param name="hashSet"></param>
 		public ValueSet(ISet<T> hashSet)
 		{
 			this.hashSet = hashSet;
@@ -115,7 +122,7 @@
 		/// <inheritdoc />
 		void ICollection<T>.Add(T item)
 		{
-			this.Add(item);
+			this.Add(item!);
 		}
 
 		/// <inheritdoc />
@@ -148,7 +155,13 @@
 		/// <inheritdoc />
 		public bool IsReadOnly => this.hashSet.IsReadOnly;
 
-		public static bool operator ==(ValueSet<T>? left, ValueSet<T>? right)
+		/// <summary>
+		///     Checks two value set instances for equality.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator ==(ValueSet<T> left, ValueSet<T> right)
 		{
 			if(left is null)
 			{
@@ -158,13 +171,19 @@
 			return left.Equals(right);
 		}
 
-		public static bool operator !=(ValueSet<T>? left, ValueSet<T>? right)
+		/// <summary>
+		///     Checks two value set instances for non-equality.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator !=(ValueSet<T> left, ValueSet<T> right)
 		{
 			return !(left == right);
 		}
 
 		/// <inheritdoc />
-		public override bool Equals(object? obj)
+		public override bool Equals(object obj)
 		{
 			if(obj is null)
 			{
@@ -176,9 +195,9 @@
 				return true;
 			}
 
-			ValueSet<T>? other = obj as ValueSet<T>;
-			return (other != null)
-				&& (this.GetType() == other.GetType())
+			ValueSet<T> other = obj as ValueSet<T>;
+			return other != null
+				&& this.GetType() == other.GetType()
 				&& this.hashSet.SetEquals(other.hashSet);
 		}
 
@@ -197,7 +216,7 @@
 				// elements, so wo have always the same order.
 				ISet<int> sortedHashCodes = new SortedSet<int>();
 
-				foreach(object? component in this.GetEqualityComponents())
+				foreach(object component in this.GetEqualityComponents())
 				{
 					if(component != null)
 					{
@@ -208,7 +227,7 @@
 
 				foreach(int componentHashCode in sortedHashCodes)
 				{
-					hashCode = (hashCode * HashMultiplier) ^ componentHashCode;
+					hashCode = hashCode * HashMultiplier ^ componentHashCode;
 				}
 
 				return hashCode;

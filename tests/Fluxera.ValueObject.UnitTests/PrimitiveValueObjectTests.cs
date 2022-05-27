@@ -11,10 +11,10 @@
 	{
 		private static IEnumerable<Action> PrimitiveTestData = new List<Action>
 		{
-			() => new StringValue(),
-			() => new IntValue(),
-			() => new GuidValue(),
-			() => new EnumValue(),
+			() => new StringValue(string.Empty),
+			() => new IntValue(0),
+			() => new GuidValue(Guid.Empty),
+			() => new EnumValue(Currency.Dollar),
 		};
 
 		[Test]
@@ -27,7 +27,7 @@
 		[Test]
 		public void ShouldThrowForInvalidTypes()
 		{
-			Action action = () => new InvalidPrimitive();
+			Action action = () => new InvalidPrimitive(new Address("1", "2", "3", "4"));
 			action.Should().Throw<TypeInitializationException>();
 		}
 	}

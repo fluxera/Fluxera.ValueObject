@@ -30,12 +30,21 @@
 		}
 
 		/// <summary>
+		///     Initializes a new instance of the <see cref="PrimitiveValueObject{TValueObject, TValue}" /> type.
+		/// </summary>
+		/// <param name="value"></param>
+		protected PrimitiveValueObject(TValue value)
+		{
+			this.Value = value;
+		}
+
+		/// <summary>
 		///     Gets or sets the single value of the value object.
 		/// </summary>
-		public TValue? Value { get; set; }
+		public TValue Value { get; private set; }
 
 		/// <inheritdoc />
-		protected sealed override IEnumerable<object?> GetEqualityComponents()
+		protected sealed override IEnumerable<object> GetEqualityComponents()
 		{
 			yield return this.Value;
 		}

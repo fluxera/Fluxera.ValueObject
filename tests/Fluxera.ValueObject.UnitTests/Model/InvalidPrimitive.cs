@@ -5,5 +5,9 @@
 	[PublicAPI]
 	public class InvalidPrimitive : PrimitiveValueObject<InvalidPrimitive, Address>
 	{
+		/// <inheritdoc />
+		public InvalidPrimitive(Address value) : base(value)
+		{
+		}
 	}
 }
