@@ -1,11 +1,11 @@
 ﻿namespace Fluxera.ValueObject.UnitTests.Model
 {
-	using System.Threading.Channels;
-	using Guards;
+	using System;
+	using Fluxera.Guards;
 	using JetBrains.Annotations;
 
 	[PublicAPI]
-	public class Address : ValueObject<Address>
+	public class Address : ValueObject<Address>, IComparable
 	{
 		public Address(string street, string houseNumber, string postCode, string city)
 		{
@@ -27,5 +27,11 @@
 		public string PostCode { get; }
 
 		public string City { get; }
+
+		/// <inheritdoc />
+		public int CompareTo(object? obj)
+		{
+			return string.Compare(this.PostCode, obj as string, StringComparison.Ordinal);
+		}
 	}
 }
