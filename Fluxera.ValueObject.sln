@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.LiteDB"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.LiteDB.UnitTests", "tests\Fluxera.ValueObject.LiteDB.UnitTests\Fluxera.ValueObject.LiteDB.UnitTests.csproj", "{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.MongoDB", "src\Fluxera.ValueObject.MongoDB\Fluxera.ValueObject.MongoDB.csproj", "{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.MongoDB.UnitTests", "tests\Fluxera.ValueObject.MongoDB.UnitTests\Fluxera.ValueObject.MongoDB.UnitTests.csproj", "{75A3F24F-590F-457B-B031-B3A41FB51C02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75A3F24F-590F-457B-B031-B3A41FB51C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75A3F24F-590F-457B-B031-B3A41FB51C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75A3F24F-590F-457B-B031-B3A41FB51C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75A3F24F-590F-457B-B031-B3A41FB51C02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +102,8 @@ Global
 		{4B5548EC-9CFF-4F83-9FDF-1831D439DB6B} = {F18D2D58-282C-4D93-8D9A-3A76CF98F018}
 		{ACAAD773-D974-41DA-A04C-9A6B06766D82} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
 		{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788} = {F18D2D58-282C-4D93-8D9A-3A76CF98F018}
+		{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{75A3F24F-590F-457B-B031-B3A41FB51C02} = {F18D2D58-282C-4D93-8D9A-3A76CF98F018}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D97BF2AF-6E68-4E88-BF70-773A86E26013}
