@@ -13,6 +13,11 @@
 	[PublicAPI]
 	public static class BsonMapperExtensions
 	{
+		/// <summary>
+		///     Configure the mapper to use the <see cref="PrimitiveValueObjectConverter" />.
+		/// </summary>
+		/// <param name="mapper"></param>
+		/// <returns></returns>
 		public static BsonMapper UsePrimitiveValueObject(this BsonMapper mapper)
 		{
 			Guard.Against.Null(mapper);

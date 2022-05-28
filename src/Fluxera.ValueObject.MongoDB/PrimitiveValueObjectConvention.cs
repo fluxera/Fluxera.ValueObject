@@ -5,6 +5,9 @@
 	using global::MongoDB.Bson.Serialization.Conventions;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     A convention that enables support for serializing primitive value object properties.
+	/// </summary>
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectConvention : ConventionBase, IMemberMapConvention
 	{

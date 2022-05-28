@@ -6,6 +6,7 @@ namespace Fluxera.ValueObject.SystemTextJson
 	using System.Text.Json.Serialization;
 	using JetBrains.Annotations;
 
+	/// <inheritdoc />
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectConverter<TValueObject, TValue> : JsonConverter<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>

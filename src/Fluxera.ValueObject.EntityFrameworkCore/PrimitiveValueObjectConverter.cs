@@ -5,6 +5,7 @@
 	using JetBrains.Annotations;
 	using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+	/// <inheritdoc />
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectConverter<TValueObject, TValue> : ValueConverter<TValueObject, TValue>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>

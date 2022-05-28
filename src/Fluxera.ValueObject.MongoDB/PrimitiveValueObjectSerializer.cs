@@ -7,6 +7,11 @@
 	using global::MongoDB.Bson.Serialization.Serializers;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     A serializer that handles instances of primitive value objects.
+	/// </summary>
+	/// <typeparam name="TValueObject"></typeparam>
+	/// <typeparam name="TValue"></typeparam>
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectSerializer<TValueObject, TValue> : SerializerBase<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>

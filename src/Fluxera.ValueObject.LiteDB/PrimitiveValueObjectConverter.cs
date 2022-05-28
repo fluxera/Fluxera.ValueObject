@@ -5,9 +5,17 @@
 	using global::LiteDB;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     A converter for primitive value objects.
+	/// </summary>
 	[PublicAPI]
 	public static class PrimitiveValueObjectConverter
 	{
+		/// <summary>
+		///     Serialize the given primitive value object instance.
+		/// </summary>
+		/// <param name="primitiveValueObjectType"></param>
+		/// <returns></returns>
 		public static Func<object, BsonValue> Serialize(Type primitiveValueObjectType)
 		{
 			return obj =>
@@ -20,6 +28,11 @@
 			};
 		}
 
+		/// <summary>
+		///     Deserialize a primitive value object instance from the given bson value.
+		/// </summary>
+		/// <param name="primitiveValueObjectType"></param>
+		/// <returns></returns>
 		public static Func<BsonValue, object> Deserialize(Type primitiveValueObjectType)
 		{
 			return bson =>

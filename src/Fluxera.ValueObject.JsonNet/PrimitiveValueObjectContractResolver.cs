@@ -5,6 +5,7 @@
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Serialization;
 
+	/// <inheritdoc />
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectContractResolver : DefaultContractResolver
 	{

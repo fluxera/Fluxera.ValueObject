@@ -16,6 +16,10 @@
 	[PublicAPI]
 	public static class ModelBuilderExtensions
 	{
+		/// <summary>
+		///     Configure the module builder to use the <see cref="PrimitiveValueObjectConverter{TValueObject,TValue}" />.
+		/// </summary>
+		/// <param name="modelBuilder"></param>
 		public static void UsePrimitiveValueObject(this ModelBuilder modelBuilder)
 		{
 			Guard.Against.Null(modelBuilder, nameof(modelBuilder));

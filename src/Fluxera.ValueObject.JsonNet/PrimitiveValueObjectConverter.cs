@@ -5,6 +5,7 @@
 	using JetBrains.Annotations;
 	using Newtonsoft.Json;
 
+	/// <inheritdoc />
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectConverter<TValueObject, TValue> : JsonConverter<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
