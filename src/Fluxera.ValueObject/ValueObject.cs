@@ -1,5 +1,6 @@
 ﻿namespace Fluxera.ValueObject
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
@@ -10,7 +11,7 @@
 	/// </summary>
 	/// <typeparam name="TValueObject">The type of the value object.</typeparam>
 	[PublicAPI]
-	public abstract class ValueObject<TValueObject>
+	public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 		where TValueObject : ValueObject<TValueObject>
 	{
 		/// <summary>
@@ -21,6 +22,12 @@
 		///     See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
 		/// </remarks>
 		private const int HashMultiplier = 37;
+
+		/// <inheritdoc />
+		public bool Equals(TValueObject other)
+		{
+			return this.Equals(other as object);
+		}
 
 		/// <summary>
 		///     Checks if the given value objects are equal.
@@ -69,7 +76,7 @@
 			{
 				// It is possible for two objects to return the same hash code based on
 				// identically valued properties, even if they are of different types,
-				// so we include the value object type in the hash calculation
+				// so we include the value object type in the hash calculation.
 				int hashCode = this.GetType().GetHashCode();
 
 				foreach(object component in this.GetEqualityComponents())

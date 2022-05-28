@@ -18,8 +18,9 @@
 	/// <typeparam name="TValueObject">The type of the value object.</typeparam>
 	/// <typeparam name="TValue">The type of the value.</typeparam>
 	[PublicAPI]
-	public abstract class PrimitiveValueObject<TValueObject, TValue> : ValueObject<TValueObject>
-		where TValueObject : ValueObject<TValueObject>
+	public abstract class PrimitiveValueObject<TValueObject, TValue> : ValueObject<TValueObject>, IComparable<PrimitiveValueObject<TValueObject, TValue>>
+		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
+		where TValue : IComparable
 	{
 		static PrimitiveValueObject()
 		{
@@ -42,6 +43,19 @@
 		///     Gets or sets the single value of the value object.
 		/// </summary>
 		public TValue Value { get; private set; }
+
+
+		/// <inheritdoc />
+		public int CompareTo(PrimitiveValueObject<TValueObject, TValue> other)
+		{
+			return (this.Value, other.Value) switch
+			{
+				(null, null) => 0,
+				(null, _) => -1,
+				(_, null) => 1,
+				(_, _) => this.Value.CompareTo(other.Value)
+			};
+		}
 
 		/// <inheritdoc />
 		protected sealed override IEnumerable<object> GetEqualityComponents()
