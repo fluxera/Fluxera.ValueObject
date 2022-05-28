@@ -1,7 +1,7 @@
 [![Build Status](https://dev.azure.com/fluxera/Foundation/_apis/build/status/GitHub/fluxera.Fluxera.ValueObject?branchName=main)](https://dev.azure.com/fluxera/Foundation/_build/latest?definitionId=63&branchName=main)
 
 # Fluxera.ValueObject
-A value objects library.
+A value object implementation.
 
 This library helps in implementing **Value Object** classes in the context of **Domain-Driven Design**. 
 A **Value Object** has several traits, some of which this library provides. 
