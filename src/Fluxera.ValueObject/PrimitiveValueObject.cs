@@ -44,7 +44,6 @@
 		/// </summary>
 		public TValue Value { get; private set; }
 
-
 		/// <inheritdoc />
 		public int CompareTo(PrimitiveValueObject<TValueObject, TValue> other)
 		{
