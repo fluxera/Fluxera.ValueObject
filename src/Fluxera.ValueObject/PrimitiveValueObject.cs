@@ -18,7 +18,7 @@
 	/// <typeparam name="TValueObject">The type of the value object.</typeparam>
 	/// <typeparam name="TValue">The type of the value.</typeparam>
 	[PublicAPI]
-	public abstract class PrimitiveValueObject<TValueObject, TValue> : ValueObject<TValueObject>, IComparable<PrimitiveValueObject<TValueObject, TValue>>
+	public abstract class PrimitiveValueObject<TValueObject, TValue> : ValueObject<TValueObject>, IComparable<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
 		where TValue : IComparable
 	{
@@ -45,7 +45,7 @@
 		public TValue Value { get; private set; }
 
 		/// <inheritdoc />
-		public int CompareTo(PrimitiveValueObject<TValueObject, TValue> other)
+		public int CompareTo(TValueObject other)
 		{
 			return (this.Value, other.Value) switch
 			{
