@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using Fluxera.Guards;
 	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
@@ -18,6 +19,7 @@
 	/// <typeparam name="TValueObject">The type of the value object.</typeparam>
 	/// <typeparam name="TValue">The type of the value.</typeparam>
 	[PublicAPI]
+	[TypeConverter(typeof(PrimitiveValueObjectConverter))]
 	public abstract class PrimitiveValueObject<TValueObject, TValue> : ValueObject<TValueObject>, IComparable<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
 		where TValue : IComparable
