@@ -34,7 +34,7 @@
 				foreach(PropertyInfo property in properties)
 				{
 					Type enumerationType = property.PropertyType;
-					Type valueType = enumerationType.GetValueType();
+					Type valueType = enumerationType.GetPrimitiveValueObjectValueType();
 
 					Type converterTypeTemplate = typeof(PrimitiveValueObjectConverter<,>);
 

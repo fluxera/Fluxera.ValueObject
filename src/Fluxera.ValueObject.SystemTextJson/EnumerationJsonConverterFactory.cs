@@ -19,7 +19,7 @@ namespace Fluxera.ValueObject.SystemTextJson
 		/// <inheritdoc />
 		public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
 		{
-			Type valueType = typeToConvert.GetValueType();
+			Type valueType = typeToConvert.GetPrimitiveValueObjectValueType();
 			Type converterTypeTemplate = typeof(PrimitiveValueObjectConverter<,>);
 			Type converterType = converterTypeTemplate.MakeGenericType(typeToConvert, valueType);
 

@@ -122,7 +122,10 @@
 		/// <inheritdoc />
 		void ICollection<T>.Add(T item)
 		{
-			this.Add(item!);
+			if(item != null)
+			{
+				this.Add(item);
+			}
 		}
 
 		/// <inheritdoc />
