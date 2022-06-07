@@ -40,7 +40,7 @@
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns>The type of the value.</returns>
-		public static Type GetValueType(this Type type)
+		public static Type GetPrimitiveValueObjectValueType(this Type type)
 		{
 			do
 			{
@@ -54,7 +54,7 @@
 			}
 			while(type is not null);
 
-			return null!;
+			return null;
 		}
 	}
 }

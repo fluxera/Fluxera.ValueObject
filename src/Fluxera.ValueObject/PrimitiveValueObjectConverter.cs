@@ -44,7 +44,7 @@
 				throw new InvalidOperationException($"The type '{primitiveValueObjectType}' is not a primitive value-object.");
 			}
 
-			Type valueType = primitiveValueObjectType.GetValueType();
+			Type valueType = primitiveValueObjectType.GetPrimitiveValueObjectValueType();
 			Type actualConverterType = typeof(PrimitiveValueObjectConverter<,>).MakeGenericType(primitiveValueObjectType, valueType);
 			return (TypeConverter)Activator.CreateInstance(actualConverterType);
 		}
@@ -54,6 +54,7 @@
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
 		where TValue : IComparable
 	{
+		// ReSharper disable once StaticMemberInGenericType
 		private static TypeConverter ValueConverter { get; } = GetIdValueConverter();
 
 		private static TypeConverter GetIdValueConverter()

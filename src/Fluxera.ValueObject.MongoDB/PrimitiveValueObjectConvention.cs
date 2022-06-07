@@ -19,7 +19,7 @@
 
 			if(memberType.IsPrimitiveValueObject())
 			{
-				Type valueType = memberType.GetValueType();
+				Type valueType = memberType.GetPrimitiveValueObjectValueType();
 				Type serializerTypeTemplate = typeof(PrimitiveValueObjectSerializer<,>);
 				Type serializerType = serializerTypeTemplate.MakeGenericType(memberType, valueType);
 

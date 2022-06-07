@@ -14,7 +14,7 @@
 		{
 			if(objectType.IsPrimitiveValueObject())
 			{
-				Type valueType = objectType.GetValueType();
+				Type valueType = objectType.GetPrimitiveValueObjectValueType();
 				Type converterTypeTemplate = typeof(PrimitiveValueObjectConverter<,>);
 				Type converterType = converterTypeTemplate.MakeGenericType(objectType, valueType);
 

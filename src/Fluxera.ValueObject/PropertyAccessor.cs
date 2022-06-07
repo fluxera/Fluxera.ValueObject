@@ -12,7 +12,7 @@
 	{
 		private static readonly ConcurrentDictionary<Type, PropertyAccessor[]> PropertyAccessorsMap = new ConcurrentDictionary<Type, PropertyAccessor[]>();
 
-		private static readonly MethodInfo CallInnerDelegateMethod = typeof(PropertyAccessor).GetMethod(nameof(CallInnerDelegate), BindingFlags.NonPublic | BindingFlags.Static)!;
+		private static readonly MethodInfo CallInnerDelegateMethod = typeof(PropertyAccessor).GetMethod(nameof(CallInnerDelegate), BindingFlags.NonPublic | BindingFlags.Static);
 
 		private PropertyAccessor(string propertyName, Func<object, object> getterFunc)
 		{

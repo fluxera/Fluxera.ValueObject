@@ -31,7 +31,7 @@
 				return false;
 			}
 
-			return firstObject!.Equals(secondObject);
+			return firstObject.Equals(secondObject);
 		}
 
 		/// <inheritdoc />

@@ -80,6 +80,10 @@ protected override IEnumerable<object> GetEqualityComponents()
 }
 ```
 
+### ```PrimitiveValueObject<TValueObject, TValue```
+
+A specialized **Value Object**  that only holds a single primitive, string or enum value.
+
 ### Collections
 
 There are implementations of ```IList<T>```, ```ISet<T>``` and ```IDictionary<TKey, TValue>``` that determine
