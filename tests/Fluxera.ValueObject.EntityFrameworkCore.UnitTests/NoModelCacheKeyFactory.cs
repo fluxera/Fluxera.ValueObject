@@ -9,7 +9,8 @@
 	/// </summary>
 	public class NoModelCacheKeyFactory : IModelCacheKeyFactory
 	{
-		public object Create(DbContext context)
+		/// <inheritdoc />
+		public object Create(DbContext context, bool designTime)
 		{
 			return Guid.NewGuid();
 		}
