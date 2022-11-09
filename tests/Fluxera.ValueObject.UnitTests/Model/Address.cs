@@ -29,7 +29,7 @@
 		public string City { get; }
 
 		/// <inheritdoc />
-		public int CompareTo(object? obj)
+		public int CompareTo(object obj)
 		{
 			return string.Compare(this.PostCode, obj as string, StringComparison.Ordinal);
 		}
