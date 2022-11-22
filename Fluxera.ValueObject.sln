@@ -5,6 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{75AC41E9-2B8B-4D76-A7DF-A18F4FB9D6D6}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		azure-pipelines.yml = azure-pipelines.yml
 		GitVersion.yml = GitVersion.yml
@@ -27,25 +28,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.UnitTests", "tests\Fluxera.ValueObject.UnitTests\Fluxera.ValueObject.UnitTests.csproj", "{6F6CAF72-1D71-434B-AD09-7A9216669502}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.JsonNet", "src\Fluxera.ValueObject.JsonNet\Fluxera.ValueObject.JsonNet.csproj", "{FA775AE5-1B74-4C42-94CF-03F3BD54E9F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.JsonNet", "src\Fluxera.ValueObject.JsonNet\Fluxera.ValueObject.JsonNet.csproj", "{FA775AE5-1B74-4C42-94CF-03F3BD54E9F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.JsonNet.UnitTests", "tests\Fluxera.ValueObject.JsonNet.UnitTests\Fluxera.ValueObject.JsonNet.UnitTests.csproj", "{F92B3AEE-E3CF-49FF-857B-7205A7FD08EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.JsonNet.UnitTests", "tests\Fluxera.ValueObject.JsonNet.UnitTests\Fluxera.ValueObject.JsonNet.UnitTests.csproj", "{F92B3AEE-E3CF-49FF-857B-7205A7FD08EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.SystemTextJson", "src\Fluxera.ValueObject.SystemTextJson\Fluxera.ValueObject.SystemTextJson.csproj", "{78B29A90-2BD9-4603-B3E2-CBB71DD59BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.SystemTextJson", "src\Fluxera.ValueObject.SystemTextJson\Fluxera.ValueObject.SystemTextJson.csproj", "{78B29A90-2BD9-4603-B3E2-CBB71DD59BEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.SystemTextJson.UnitTests", "tests\Fluxera.ValueObject.SystemTextJson.UnitTests\Fluxera.ValueObject.SystemTextJson.UnitTests.csproj", "{4B5548EC-9CFF-4F83-9FDF-1831D439DB6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.SystemTextJson.UnitTests", "tests\Fluxera.ValueObject.SystemTextJson.UnitTests\Fluxera.ValueObject.SystemTextJson.UnitTests.csproj", "{4B5548EC-9CFF-4F83-9FDF-1831D439DB6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.LiteDB", "src\Fluxera.ValueObject.LiteDB\Fluxera.ValueObject.LiteDB.csproj", "{ACAAD773-D974-41DA-A04C-9A6B06766D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.LiteDB", "src\Fluxera.ValueObject.LiteDB\Fluxera.ValueObject.LiteDB.csproj", "{ACAAD773-D974-41DA-A04C-9A6B06766D82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.LiteDB.UnitTests", "tests\Fluxera.ValueObject.LiteDB.UnitTests\Fluxera.ValueObject.LiteDB.UnitTests.csproj", "{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.LiteDB.UnitTests", "tests\Fluxera.ValueObject.LiteDB.UnitTests\Fluxera.ValueObject.LiteDB.UnitTests.csproj", "{5A4B736C-AEF7-4CF0-A27A-7E8ACD88B788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.MongoDB", "src\Fluxera.ValueObject.MongoDB\Fluxera.ValueObject.MongoDB.csproj", "{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.MongoDB", "src\Fluxera.ValueObject.MongoDB\Fluxera.ValueObject.MongoDB.csproj", "{8452ADA6-51E7-4E69-A83C-7EBC822E6AAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.MongoDB.UnitTests", "tests\Fluxera.ValueObject.MongoDB.UnitTests\Fluxera.ValueObject.MongoDB.UnitTests.csproj", "{75A3F24F-590F-457B-B031-B3A41FB51C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.MongoDB.UnitTests", "tests\Fluxera.ValueObject.MongoDB.UnitTests\Fluxera.ValueObject.MongoDB.UnitTests.csproj", "{75A3F24F-590F-457B-B031-B3A41FB51C02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.EntityFrameworkCore", "src\Fluxera.ValueObject.EntityFrameworkCore\Fluxera.ValueObject.EntityFrameworkCore.csproj", "{AD7A0B26-A63A-47DC-897B-781206B084AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.EntityFrameworkCore", "src\Fluxera.ValueObject.EntityFrameworkCore\Fluxera.ValueObject.EntityFrameworkCore.csproj", "{AD7A0B26-A63A-47DC-897B-781206B084AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.ValueObject.EntityFrameworkCore.UnitTests", "tests\Fluxera.ValueObject.EntityFrameworkCore.UnitTests\Fluxera.ValueObject.EntityFrameworkCore.UnitTests.csproj", "{1E08934F-F3FF-498A-B660-18E6C7C0958B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.ValueObject.EntityFrameworkCore.UnitTests", "tests\Fluxera.ValueObject.EntityFrameworkCore.UnitTests\Fluxera.ValueObject.EntityFrameworkCore.UnitTests.csproj", "{1E08934F-F3FF-498A-B660-18E6C7C0958B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
