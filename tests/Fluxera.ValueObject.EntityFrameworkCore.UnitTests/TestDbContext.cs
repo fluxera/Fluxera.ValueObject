@@ -54,12 +54,12 @@
 				foreach(Type type in types)
 				{
 					EntityTypeBuilder entityBuilder = modelBuilder.Entity(type);
+					entityBuilder.UsePrimitiveValueObject();
+
 					object[] data = this.SeedData.Where(x => x.GetType() == type).ToArray();
 					entityBuilder.HasData(data);
 				}
 			}
-
-			modelBuilder.UsePrimitiveValueObject();
 
 			base.OnModelCreating(modelBuilder);
 		}
