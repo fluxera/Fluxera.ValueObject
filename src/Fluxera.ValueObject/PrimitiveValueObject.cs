@@ -63,5 +63,11 @@
 		{
 			yield return this.Value;
 		}
+
+		/// <inheritdoc />
+		public override sealed string ToString()
+		{
+			return this.Value.ToString();
+		}
 	}
 }

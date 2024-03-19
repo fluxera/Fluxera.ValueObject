@@ -92,7 +92,7 @@
 		}
 
 		/// <inheritdoc />
-		public sealed override string ToString()
+		public override string ToString()
 		{
 			using(IEnumerator<object> enumerator = this.GetEqualityComponents().GetEnumerator())
 			{
