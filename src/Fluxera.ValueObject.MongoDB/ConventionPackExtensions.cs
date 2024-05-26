@@ -16,6 +16,8 @@
 		/// <returns></returns>
 		public static ConventionPack UsePrimitiveValueObject(this ConventionPack pack)
 		{
+			Guard.ThrowIfNull(pack);
+
 			pack.Add(new PrimitiveValueObjectConvention());
 
 			return pack;

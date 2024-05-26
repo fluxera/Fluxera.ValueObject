@@ -3,7 +3,6 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using Fluxera.Guards;
 	using global::LiteDB;
 	using JetBrains.Annotations;
 
@@ -20,7 +19,7 @@
 		/// <returns></returns>
 		public static BsonMapper UsePrimitiveValueObject(this BsonMapper mapper)
 		{
-			Guard.Against.Null(mapper);
+			Guard.ThrowIfNull(mapper);
 
 			IEnumerable<Type> primitiveValueObjectTypes = AppDomain.CurrentDomain
 				.GetAssemblies()

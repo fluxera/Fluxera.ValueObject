@@ -4,7 +4,6 @@
 	using System.Collections.Concurrent;
 	using System.Linq;
 	using System.Reflection;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 
 	[PublicAPI]
@@ -16,8 +15,8 @@
 
 		private PropertyAccessor(string propertyName, Func<object, object> getterFunc)
 		{
-			Guard.Against.NullOrWhiteSpace(propertyName, nameof(propertyName));
-			Guard.Against.Null(getterFunc, nameof(getterFunc));
+			Guard.ThrowIfNullOrWhiteSpace(propertyName);
+			Guard.ThrowIfNull(getterFunc);
 
 			this.PropertyName = propertyName;
 			this.GetterFunc = getterFunc;

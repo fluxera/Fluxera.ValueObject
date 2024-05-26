@@ -13,6 +13,8 @@
 		/// <param name="settings"></param>
 		public static void UsePrimitiveValueObject(this JsonSerializerSettings settings)
 		{
+			Guard.ThrowIfNull(settings);
+
 			settings.ContractResolver = new CompositeContractResolver
 			{
 				new PrimitiveValueObjectContractResolver()

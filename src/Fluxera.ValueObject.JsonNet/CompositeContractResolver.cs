@@ -4,7 +4,6 @@
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.Linq;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Newtonsoft.Json.Serialization;
 
@@ -42,7 +41,7 @@
 		/// <param name="contractResolver"></param>
 		public void Add(IContractResolver contractResolver)
 		{
-			Guard.Against.Null(contractResolver);
+			Guard.ThrowIfNull(contractResolver);
 
 			if(this.contractResolvers.Contains(this.defaultContractResolver))
 			{
