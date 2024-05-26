@@ -15,6 +15,8 @@ namespace Fluxera.ValueObject.SystemTextJson
 		/// <param name="options"></param>
 		public static void UsePrimitiveValueObject(this JsonSerializerOptions options)
 		{
+			Guard.ThrowIfNull(options);
+
 			options.Converters.Add(new PrimitiveValueObjectJsonConverterFactory());
 		}
 	}

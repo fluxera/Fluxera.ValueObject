@@ -3,8 +3,6 @@
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
-	using Fluxera.Guards;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 
 	/// <summary>
@@ -29,7 +27,7 @@
 			Type valueType = typeof(TValue);
 			bool isPrimitive = valueType.IsPrimitive(true);
 
-			Guard.Against.False(isPrimitive, nameof(Value), "The value of a primitive value object must be a primitive, string or enum value.");
+			Guard.ThrowIfFalse(isPrimitive, nameof(Value), "The value of a primitive value object must be a primitive, string or enum value.");
 		}
 
 		/// <summary>

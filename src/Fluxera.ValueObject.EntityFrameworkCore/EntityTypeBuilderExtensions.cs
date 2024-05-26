@@ -4,7 +4,6 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -23,7 +22,7 @@
 		/// <param name="entityTypeBuilder"></param>
 		public static void UsePrimitiveValueObject(this EntityTypeBuilder entityTypeBuilder)
 		{
-			Guard.Against.Null(entityTypeBuilder);
+			Guard.ThrowIfNull(entityTypeBuilder);
 
 			IEnumerable<PropertyInfo> properties = entityTypeBuilder.Metadata
 				.ClrType

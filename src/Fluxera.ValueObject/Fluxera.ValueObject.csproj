@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
@@ -22,8 +22,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Guards" Version="8.0.*" />
-		<PackageReference Include="Fluxera.Utilities" Version="8.0.*" />
+		<InternalsVisibleTo Include="Fluxera.ValueObject.EntityFrameworkCore" />
+		<InternalsVisibleTo Include="Fluxera.ValueObject.JsonNet" />
+		<InternalsVisibleTo Include="Fluxera.ValueObject.LiteDB" />
+		<InternalsVisibleTo Include="Fluxera.ValueObject.MongoDB" />
+		<InternalsVisibleTo Include="Fluxera.ValueObject.SystemTextJson" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
