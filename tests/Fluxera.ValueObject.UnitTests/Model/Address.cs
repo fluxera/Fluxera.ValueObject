@@ -1,7 +1,6 @@
 ﻿namespace Fluxera.ValueObject.UnitTests.Model
 {
 	using System;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 
 	[PublicAPI]
@@ -9,11 +8,6 @@
 	{
 		public Address(string street, string houseNumber, string postCode, string city)
 		{
-			Guard.Against.NullOrWhiteSpace(street, nameof(street));
-			Guard.Against.NullOrWhiteSpace(houseNumber, nameof(houseNumber));
-			Guard.Against.NullOrWhiteSpace(postCode, nameof(postCode));
-			Guard.Against.NullOrWhiteSpace(city, nameof(city));
-
 			this.Street = street;
 			this.HouseNumber = houseNumber;
 			this.PostCode = postCode;

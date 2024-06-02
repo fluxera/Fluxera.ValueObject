@@ -1,6 +1,5 @@
 ﻿namespace Fluxera.ValueObject.UnitTests.Model
 {
-	using Guards;
 	using JetBrains.Annotations;
 
 	[PublicAPI]
@@ -9,7 +8,6 @@
 		public Country(string twoLetterCode)
 		{
 			this.TwoLetterCode = twoLetterCode;
-			Guard.Against.InvalidLength(twoLetterCode, nameof(twoLetterCode), 2);
 		}
 
 		public string TwoLetterCode { get; }
