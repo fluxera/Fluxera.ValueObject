@@ -44,6 +44,16 @@
 		/// </summary>
 		public TValue Value { get; private set; }
 
+		/// <summary>
+		///		Creates a new instance of the <see cref="TValueObject"/> with the given value.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static TValueObject Create(TValue value)
+		{
+			return (TValueObject)Activator.CreateInstance(typeof(TValueObject), [value]);
+		}
+
 		/// <inheritdoc />
 		public int CompareTo(TValueObject other)
 		{
