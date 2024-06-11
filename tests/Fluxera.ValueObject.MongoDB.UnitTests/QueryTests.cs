@@ -1,15 +1,10 @@
 ﻿namespace Fluxera.ValueObject.MongoDB.UnitTests
 {
-	using System;
-	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using FluentAssertions;
 	using Fluxera.ValueObject.MongoDB.UnitTests.Model;
-	using global::MongoDB.Bson;
-	using global::MongoDB.Bson.IO;
 	using global::MongoDB.Bson.Serialization.Conventions;
 	using global::MongoDB.Driver;
-	using global::MongoDB.Driver.Core.Events;
 	using global::MongoDB.Driver.Linq;
 	using NUnit.Framework;
 
