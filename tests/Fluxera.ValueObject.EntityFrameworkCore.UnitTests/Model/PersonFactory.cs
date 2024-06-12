@@ -3,7 +3,6 @@
 	using System;
 	using System.Collections.Generic;
 	using Bogus;
-	using Fluxera.ValueObject.LiteDB.UnitTests.Model;
 
 	public static class PersonFactory
 	{

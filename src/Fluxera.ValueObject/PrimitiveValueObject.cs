@@ -19,7 +19,9 @@
 	/// <typeparam name="TValue">The type of the value.</typeparam>
 	[PublicAPI]
 	[TypeConverter(typeof(PrimitiveValueObjectConverter))]
-	public abstract class PrimitiveValueObject<TValueObject, TValue> : IComparable<TValueObject>, IEquatable<TValueObject>
+	public abstract class PrimitiveValueObject<TValueObject, TValue> : 
+		IComparable<PrimitiveValueObject<TValueObject, TValue>>, 
+		IEquatable<PrimitiveValueObject<TValueObject, TValue>>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
 		where TValue : IComparable<TValue>, IEquatable<TValue>
 	{
@@ -65,7 +67,7 @@
 		}
 
 		/// <inheritdoc />
-		public bool Equals(TValueObject other)
+		public bool Equals(PrimitiveValueObject<TValueObject, TValue> other)
 		{
 			return this.Equals(other as object);
 		}
@@ -78,7 +80,7 @@
 				return false;
 			}
 
-			if(object.ReferenceEquals(this, obj))
+			if(ReferenceEquals(this, obj))
 			{
 				return true;
 			}
@@ -90,7 +92,7 @@
 		}
 
 		/// <inheritdoc />
-		public int CompareTo(TValueObject other)
+		public int CompareTo(PrimitiveValueObject<TValueObject, TValue> other)
 		{
 			return (this.Value, other.Value) switch
 			{
@@ -123,6 +125,50 @@
 		}
 
 		/// <summary>
+		///     Compares the given primitive value object instances with the lower-than operator.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator <(PrimitiveValueObject<TValueObject, TValue> left, PrimitiveValueObject<TValueObject, TValue> right)
+		{
+			return left.CompareTo(right) < 0;
+		}
+
+		/// <summary>
+		///     Compares the given primitive value object instances with the lower-than-equal operator.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator <=(PrimitiveValueObject<TValueObject, TValue> left, PrimitiveValueObject<TValueObject, TValue> right)
+		{
+			return left.CompareTo(right) <= 0;
+		}
+
+		/// <summary>
+		///     Compares the given primitive value object instances with the greater-than operator.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator >(PrimitiveValueObject<TValueObject, TValue> left, PrimitiveValueObject<TValueObject, TValue> right)
+		{
+			return left.CompareTo(right) > 0;
+		}
+
+		/// <summary>
+		///     Compares the given primitive value object instances with the greater-than-equal operator.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator >=(PrimitiveValueObject<TValueObject, TValue> left, PrimitiveValueObject<TValueObject, TValue> right)
+		{
+			return left.CompareTo(right) >= 0;
+		}
+
+		/// <summary>
 		///		Converts the value object implicitly to its primitive value.
 		/// </summary>
 		/// <param name="value"></param>
@@ -132,10 +178,10 @@
 		}
 
 		/// <summary>
-		///		Converts the primitive value explicitly to its value object.
+		///		Converts the primitive value implicitly to its value object.
 		/// </summary>
 		/// <param name="value"></param>
-		public static explicit operator PrimitiveValueObject<TValueObject, TValue>(TValue value)
+		public static implicit operator PrimitiveValueObject<TValueObject, TValue>(TValue value)
 		{
 			return Create(value);
 		}
