@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Linq;
 	using JetBrains.Annotations;
 
 	/// <summary>
@@ -18,10 +19,19 @@
 	/// <typeparam name="TValue">The type of the value.</typeparam>
 	[PublicAPI]
 	[TypeConverter(typeof(PrimitiveValueObjectConverter))]
-	public abstract class PrimitiveValueObject<TValueObject, TValue> : ValueObject<TValueObject>, IComparable<TValueObject>
+	public abstract class PrimitiveValueObject<TValueObject, TValue> : IComparable<TValueObject>, IEquatable<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
-		where TValue : IComparable
+		where TValue : IComparable<TValue>, IEquatable<TValue>
 	{
+		/// <summary>
+		///     To ensure hashcode uniqueness, a carefully selected random number multiplier
+		///     is used within the calculation.
+		/// </summary>
+		/// <remarks>
+		///     See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
+		/// </remarks>
+		private const int HashMultiplier = 37;
+
 		static PrimitiveValueObject()
 		{
 			Type valueType = typeof(TValue);
@@ -44,28 +54,129 @@
 		/// </summary>
 		public TValue Value { get; private set; }
 
+		/// <summary>
+		///		Creates a new instance of the <see cref="TValueObject"/> with the given value.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static TValueObject Create(TValue value)
+		{
+			return (TValueObject)Activator.CreateInstance(typeof(TValueObject), [value]);
+		}
+
+		/// <inheritdoc />
+		public bool Equals(TValueObject other)
+		{
+			return this.Equals(other as object);
+		}
+
+		/// <inheritdoc />
+		public sealed override bool Equals(object obj)
+		{
+			if(obj is null)
+			{
+				return false;
+			}
+
+			if(object.ReferenceEquals(this, obj))
+			{
+				return true;
+			}
+
+			PrimitiveValueObject<TValueObject, TValue> other = obj as PrimitiveValueObject<TValueObject, TValue>;
+			return other != null
+				&& this.GetType() == other.GetType()
+				&& this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+		}
+
 		/// <inheritdoc />
 		public int CompareTo(TValueObject other)
 		{
 			return (this.Value, other.Value) switch
 			{
 				(null, null) => 0,
-				(null, _) => -1,
-				(_, null) => 1,
-				(_, _) => this.Value.CompareTo(other.Value)
+				(null, _)    => -1,
+				(_, null)    => 1,
+				(_, _)       => this.Value.CompareTo(other.Value)
 			};
 		}
 
-		/// <inheritdoc />
-		protected sealed override IEnumerable<object> GetEqualityComponents()
+		/// <summary>
+		///     Checks if the given IDs are equal.
+		/// </summary>
+		public static bool operator ==(PrimitiveValueObject<TValueObject, TValue> left, PrimitiveValueObject<TValueObject, TValue> right)
 		{
-			yield return this.Value;
+			if(left is null)
+			{
+				return right is null;
+			}
+
+			return left.Equals(right);
+		}
+
+		/// <summary>
+		///     Checks if the given IDs are not equal.
+		/// </summary>
+		public static bool operator !=(PrimitiveValueObject<TValueObject, TValue> left, PrimitiveValueObject<TValueObject, TValue> right)
+		{
+			return !(left == right);
+		}
+
+		/// <summary>
+		///		Converts the value object implicitly to its primitive value.
+		/// </summary>
+		/// <param name="value"></param>
+		public static implicit operator TValue(PrimitiveValueObject<TValueObject, TValue> value)
+		{
+			return value.Value;
+		}
+
+		/// <summary>
+		///		Converts the primitive value explicitly to its value object.
+		/// </summary>
+		/// <param name="value"></param>
+		public static explicit operator PrimitiveValueObject<TValueObject, TValue>(TValue value)
+		{
+			return Create(value);
+		}
+
+		/// <inheritdoc />
+		public sealed override int GetHashCode()
+		{
+			unchecked
+			{
+				// It is possible for two objects to return the same hash code based on
+				// identically valued properties, even if they are of different types,
+				// so we include the value object type in the hash calculation.
+				int hashCode = this.GetType().GetHashCode();
+
+				foreach(object component in this.GetEqualityComponents())
+				{
+					if(component != null)
+					{
+						hashCode = hashCode * HashMultiplier ^ component.GetHashCode();
+					}
+				}
+
+				return hashCode;
+			}
 		}
 
 		/// <inheritdoc />
 		public override sealed string ToString()
 		{
 			return this.Value.ToString();
+		}
+
+		/// <summary>
+		///     Gets all components of the value object that are used for equality. <br />
+		///     The default implementation get all properties via reflection. One
+		///     can at any time override this behavior with a manual or custom implementation.
+		/// </summary>
+		/// <returns>The components to use for equality.</returns>
+		private IEnumerable<object> GetEqualityComponents()
+		{
+			yield return this.Value;
 		}
 	}
 }

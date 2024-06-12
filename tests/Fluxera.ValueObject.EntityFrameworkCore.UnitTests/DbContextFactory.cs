@@ -1,6 +1,7 @@
 ﻿namespace Fluxera.ValueObject.EntityFrameworkCore.UnitTests
 {
 	using System.Linq;
+	using Fluxera.ValueObject.EntityFrameworkCore.UnitTests.Model;
 
 	public static class DbContextFactory
 	{

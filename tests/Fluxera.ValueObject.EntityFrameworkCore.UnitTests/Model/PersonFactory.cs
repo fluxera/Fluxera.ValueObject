@@ -1,8 +1,9 @@
-﻿namespace Fluxera.ValueObject.EntityFrameworkCore.UnitTests
+﻿namespace Fluxera.ValueObject.EntityFrameworkCore.UnitTests.Model
 {
 	using System;
 	using System.Collections.Generic;
 	using Bogus;
+	using Fluxera.ValueObject.LiteDB.UnitTests.Model;
 
 	public static class PersonFactory
 	{
@@ -10,13 +11,15 @@
 		{
 			return new Faker<Person>()
 				.RuleFor(e => e.Id, (f, e) => f.Random.Guid().ToString())
+				.RuleFor(e => e.Name, (f, e) => f.Person.FullName)
+				.RuleFor(e => e.Age, (f, e) => new Age(25))
 				.RuleFor(e => e.StringPrimitive, (f, e) => new StringPrimitive("12345"))
 				.Generate(count);
 		}
 
 		public static void Initialize()
 		{
-			Randomizer.Seed = new Random(62392);
+			Randomizer.Seed = new Random(37);
 		}
 	}
 }

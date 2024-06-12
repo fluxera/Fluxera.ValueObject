@@ -13,8 +13,7 @@
 		{
 			() => new StringValue(string.Empty),
 			() => new IntValue(0),
-			() => new GuidValue(Guid.Empty),
-			() => new EnumValue(Currency.Dollar),
+			() => new GuidValue(Guid.Empty)
 		};
 
 		[Test]
@@ -22,13 +21,6 @@
 		public void ShouldNotThrowForValidTypes(Action action)
 		{
 			action.Should().NotThrow();
-		}
-
-		[Test]
-		public void ShouldThrowForInvalidTypes()
-		{
-			Action action = () => new InvalidPrimitive(new Address("1", "2", "3", "4"));
-			action.Should().Throw<TypeInitializationException>();
 		}
 	}
 }

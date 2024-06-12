@@ -51,7 +51,7 @@
 
 	internal sealed class PrimitiveValueObjectConverter<TValueObject, TValue> : TypeConverter
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
-		where TValue : IComparable
+		where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>
 	{
 		// ReSharper disable once StaticMemberInGenericType
 		private static TypeConverter ValueConverter { get; } = GetIdValueConverter();

@@ -9,7 +9,7 @@
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectConverter<TValueObject, TValue> : JsonConverter<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
-		where TValue : IComparable
+		where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>
 	{
 		/// <inheritdoc />
 		public override bool CanWrite => true;

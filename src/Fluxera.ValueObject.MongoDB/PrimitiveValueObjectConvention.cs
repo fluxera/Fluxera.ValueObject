@@ -23,8 +23,8 @@
 				Type serializerTypeTemplate = typeof(PrimitiveValueObjectSerializer<,>);
 				Type serializerType = serializerTypeTemplate.MakeGenericType(memberType, valueType);
 
-				IBsonSerializer enumerationSerializer = (IBsonSerializer)Activator.CreateInstance(serializerType);
-				memberMap.SetSerializer(enumerationSerializer);
+				IBsonSerializer serializer = (IBsonSerializer)Activator.CreateInstance(serializerType);
+				memberMap.SetSerializer(serializer);
 			}
 		}
 	}

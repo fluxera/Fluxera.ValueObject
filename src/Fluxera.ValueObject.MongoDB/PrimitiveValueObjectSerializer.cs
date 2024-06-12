@@ -15,7 +15,7 @@
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectSerializer<TValueObject, TValue> : SerializerBase<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
-		where TValue : IComparable
+		where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>
 	{
 		/// <inheritdoc />
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValueObject value)
@@ -40,7 +40,7 @@
 			}
 
 			TValue value = BsonSerializer.Deserialize<TValue>(context.Reader);
-			object instance = Activator.CreateInstance(args.NominalType, BindingFlags.Public | BindingFlags.Instance, null, new object[] { value }, null);
+			object instance = Activator.CreateInstance(args.NominalType, BindingFlags.Public | BindingFlags.Instance, null, [value], null);
 			return (TValueObject)instance;
 		}
 	}
