@@ -1,7 +1,6 @@
 ﻿namespace Fluxera.ValueObject.EntityFrameworkCore.UnitTests.Model
 {
 	using System.ComponentModel.DataAnnotations;
-	using Fluxera.ValueObject.LiteDB.UnitTests.Model;
 
 	public class Person
 	{

@@ -1,4 +1,4 @@
-﻿namespace Fluxera.ValueObject.LiteDB.UnitTests.Model
+﻿namespace Fluxera.ValueObject.EntityFrameworkCore.UnitTests.Model
 {
 	public sealed class Age : PrimitiveValueObject<Age, int>
 	{

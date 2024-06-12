@@ -4,7 +4,6 @@
 	using System.Threading.Tasks;
 	using FluentAssertions;
 	using Fluxera.ValueObject.EntityFrameworkCore.UnitTests.Model;
-	using Fluxera.ValueObject.LiteDB.UnitTests.Model;
 	using Microsoft.EntityFrameworkCore;
 	using NUnit.Framework;
 
@@ -37,7 +36,7 @@
 			linqFilterResult.Should().NotBeNull();
 		}
 
-		[Ignore("Fix this later")]
+		[Ignore("Fix this later. Drop .NET 7 in November?")]
 		[Test]
 		public async Task ShouldFindByValueEquals()
 		{
@@ -48,7 +47,6 @@
 			linqFilterResult.Should().NotBeNull();
 		}
 
-		[Ignore("Fix this later")]
 		[Test]
 		public async Task ShouldFindByPrimitiveValueObjectComparison()
 		{
@@ -59,7 +57,6 @@
 			linqFilterResult.Should().NotBeNull();
 		}
 
-		[Ignore("Fix this later")]
 		[Test]
 		public async Task ShouldFindByValueComparison()
 		{
