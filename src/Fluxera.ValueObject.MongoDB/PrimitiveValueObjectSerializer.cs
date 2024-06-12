@@ -13,9 +13,9 @@
 	/// <typeparam name="TValueObject"></typeparam>
 	/// <typeparam name="TValue"></typeparam>
 	[PublicAPI]
-	public sealed class PrimitiveValueObjectSerializer<TValueObject, TValue> : SerializerBase<TValueObject>, IBsonDocumentSerializer
+	public sealed class PrimitiveValueObjectSerializer<TValueObject, TValue> : SerializerBase<TValueObject>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
-		where TValue : IComparable
+		where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>
 	{
 		/// <inheritdoc />
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValueObject value)
@@ -42,20 +42,6 @@
 			TValue value = BsonSerializer.Deserialize<TValue>(context.Reader);
 			object instance = Activator.CreateInstance(args.NominalType, BindingFlags.Public | BindingFlags.Instance, null, [value], null);
 			return (TValueObject)instance;
-		}
-
-		/// <inheritdoc />
-		public bool TryGetMemberSerializationInfo(string memberName, out BsonSerializationInfo serializationInfo)
-		{
-			if(memberName == "Value")
-			{
-				IBsonSerializer<TValue> serializer = BsonSerializer.LookupSerializer<TValue>();
-				serializationInfo = new BsonSerializationInfo(memberName, serializer, typeof(TValue));
-				return true;
-			}
-
-			serializationInfo = null;
-			return false;
 		}
 	}
 }

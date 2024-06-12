@@ -19,7 +19,8 @@
 		public void ShouldReturnTrueForPrimitiveValueObjectType()
 		{
 			Type type = typeof(PostCode);
-			type.IsValueObject().Should().BeTrue();
+			type.IsValueObject().Should().BeFalse();
+			type.IsPrimitiveValueObject().Should().BeTrue();
 		}
 
 		[Test]

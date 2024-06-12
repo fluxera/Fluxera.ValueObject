@@ -9,7 +9,7 @@
 	[PublicAPI]
 	public sealed class PrimitiveValueObjectConverter<TValueObject, TValue> : ValueConverter<TValueObject, TValue>
 		where TValueObject : PrimitiveValueObject<TValueObject, TValue>
-		where TValue : IComparable
+		where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>
 	{
 		/// <summary>
 		///     Initializes a new instance of the <see cref="PrimitiveValueObjectConverter{TValueObject,TValue}" /> type.

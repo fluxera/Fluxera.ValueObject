@@ -11,8 +11,10 @@
 	[TestFixture]
 	public class QueryTests
 	{
-		[Test]
-		public async Task ShouldFindByPrimitiveValueObject()
+		private IMongoCollection<Person> collection;
+
+		[OneTimeSetUp]
+		public async Task Setup()
 		{
 			ConventionPack pack = [];
 			pack.UsePrimitiveValueObject();
@@ -20,7 +22,7 @@
 
 			IMongoClient client = new MongoClient(GlobalFixture.ConnectionString);
 			IMongoDatabase database = client.GetDatabase(GlobalFixture.Database);
-			IMongoCollection<Person> collection = database.GetCollection<Person>("People");
+			this.collection = database.GetCollection<Person>("People");
 
 			Person person = new Person
 			{
@@ -28,21 +30,45 @@
 				Age = Age.Create(25),
 			};
 
-			await collection.InsertOneAsync(person);
+			await this.collection.InsertOneAsync(person);
+		}
 
-			Person stringFilterResult = await collection
-			   .Find(Builders<Person>.Filter.Lt("Age.Value", 40))
-			   .FirstOrDefaultAsync();
-			stringFilterResult.Should().NotBeNull();
-
-			Person expressionFilterResult = await collection
-				.Find(Builders<Person>.Filter.Lt(p => p.Age.Value, 40))
-				.FirstOrDefaultAsync();
-			expressionFilterResult.Should().NotBeNull();
-
-			Person linqFilterResult = await collection
+		[Test]
+		public async Task ShouldFindByPrimitiveValueObjectEquals()
+		{
+			Person linqFilterResult = await this.collection
 				.AsQueryable()
-				.Where(x => x.Age.Value < 40)
+				.Where(x => x.Age == Age.Create(25))
+				.FirstOrDefaultAsync();
+			linqFilterResult.Should().NotBeNull();
+		}
+
+		[Test]
+		public async Task ShouldFindByValueEquals()
+		{
+			Person linqFilterResult = await this.collection
+				.AsQueryable()
+				.Where(x => x.Age == 25)
+				.FirstOrDefaultAsync();
+			linqFilterResult.Should().NotBeNull();
+		}
+
+		[Test]
+		public async Task ShouldFindByPrimitiveValueObjectComparison()
+		{
+			Person linqFilterResult = await this.collection
+				.AsQueryable()
+				.Where(x => x.Age < Age.Create(40))
+				.FirstOrDefaultAsync();
+			linqFilterResult.Should().NotBeNull();
+		}
+
+		[Test]
+		public async Task ShouldFindByValueComparison()
+		{
+			Person linqFilterResult = await this.collection
+				.AsQueryable()
+				.Where(x => x.Age < 40)
 				.FirstOrDefaultAsync();
 			linqFilterResult.Should().NotBeNull();
 		}

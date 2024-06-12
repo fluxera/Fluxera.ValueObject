@@ -31,18 +31,23 @@
 
 			foreach(PropertyInfo property in properties)
 			{
-				Type enumerationType = property.PropertyType;
-				Type valueType = enumerationType.GetPrimitiveValueObjectValueType();
+				Type originalMemberType = property.PropertyType;
+				Type memberType = Nullable.GetUnderlyingType(originalMemberType) ?? originalMemberType;
 
-				Type converterTypeTemplate = typeof(PrimitiveValueObjectConverter<,>);
+				if(memberType.IsPrimitiveValueObject())
+				{
+					Type valueType = memberType.GetPrimitiveValueObjectValueType();
 
-				Type converterType = converterTypeTemplate.MakeGenericType(enumerationType, valueType);
+					Type converterTypeTemplate = typeof(PrimitiveValueObjectConverter<,>);
 
-				ValueConverter converter = (ValueConverter)Activator.CreateInstance(converterType);
+					Type converterType = converterTypeTemplate.MakeGenericType(memberType, valueType);
 
-				entityTypeBuilder
-					.Property(property.Name)
-					.HasConversion(converter);
+					ValueConverter converter = (ValueConverter)Activator.CreateInstance(converterType);
+
+					entityTypeBuilder
+						.Property(property.Name)
+						.HasConversion(converter);
+				}
 			}
 		}
 	}
