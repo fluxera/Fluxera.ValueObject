@@ -57,7 +57,7 @@
 		public TValue Value { get; private set; }
 
 		/// <summary>
-		///		Creates a new instance of the <see cref="TValueObject"/> with the given value.
+		///		Creates a new instance of the <typeparamref name="TValueObject" />  with the given value.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
